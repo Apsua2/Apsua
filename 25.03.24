@@ -1,0 +1,84 @@
+#include <iostream>
+#include <string>
+
+class Email {
+private:
+    std::string sender;
+    std::string recipient;
+    std::string subject;
+    std::string body;
+
+public:
+    Email(const std::string& s, const std::string& r, const std::string& sub, const std::string& b)
+        : sender(s), recipient(r), subject(sub), body(b) {}
+
+    void sendEmail() {
+        std::cout << "Отправка электронного письма..." << std::endl;
+    }
+
+    void displayEmailInfo() {
+        std::cout << "От: " << sender << std::endl;
+        std::cout << "Кому: " << recipient << std::endl;
+        std::cout << "Тема: " << subject << std::endl;
+        std::cout << "Текст: " << body << std::endl;
+    }
+};
+
+class SMS {
+private:
+    std::string sender;
+    std::string recipient;
+    std::string message;
+
+public:
+    SMS(const std::string& s, const std::string& r, const std::string& m)
+        : sender(s), recipient(r), message(m) {}
+
+    void sendSMS() {
+        std::cout << "Отправка SMS..." << std::endl;
+    }
+
+    void displaySMSInfo() {
+        std::cout << "От: " << sender << std::endl;
+        std::cout << "Кому: " << recipient << std::endl;
+        std::cout << "Сообщение: " << message << std::endl;
+    }
+};
+
+class Letter {
+private:
+    std::string sender;
+    std::string recipient;
+    std::string address;
+    std::string content;
+
+public:
+    Letter(const std::string& s, const std::string& r, const std::string& a, const std::string& c)
+        : sender(s), recipient(r), address(a), content(c) {}
+
+    void sendLetter() {
+        std::cout << "Отправка письма..." << std::endl;
+    }
+
+    void displayLetterInfo() {
+        std::cout << "От: " << sender << std::endl;
+        std::cout << "Кому: " << recipient << std::endl;
+        std::cout << "Адрес: " << address << std::endl;
+        std::cout << "Содержание: " << content << std::endl;
+    }
+};
+
+int main() {
+    Email email("alice@example.com", "bob@example.com", "Встреча", "Привет, Боб, давай встретимся завтра.");
+    email.displayEmailInfo();
+    email.sendEmail();
+
+    SMS sms("1234567890", "0987654321", "Не забудь о встрече!");
+    sms.displaySMSInfo();
+    sms.sendSMS();
+
+    Letter letter("Алиса", "Боб", "Ул. Главная, 123", "Дорогой Боб, надеюсь, что это письмо найдет тебя в порядке.");
+    letter.displayLetterInfo();
+    letter.sendLetter();
+
+    return 0;
