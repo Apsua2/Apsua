@@ -1,0 +1,109 @@
+//-----1-----
+
+#include <iostream>
+#include <string>
+
+class Animal {
+protected:
+    std::string name;
+    int age;
+public:
+    Animal(std::string _name, int _age) : name(_name), age(_age) {}
+
+    void breathe() {
+        std::cout << "Животное дышит." << std::endl;
+    }
+};
+
+class Mammal : public Animal {
+public:
+    Mammal(std::string _name, int _age) : Animal(_name, _age) {}
+
+    void feedMilk() {
+        std::cout << "Млекопитающее кормит молоком." << std::endl;
+    }
+};
+
+class Bird : public Animal {
+public:
+    Bird(std::string _name, int _age) : Animal(_name, _age) {}
+
+    void fly() {
+        std::cout << "Птица летит." << std::endl;
+    }
+};
+
+class Fish : public Animal {
+public:
+    Fish(std::string _name, int _age) : Animal(_name, _age) {}
+
+    void swim() {
+        std::cout << "Рыба плавает." << std::endl;
+    }
+};
+
+int main() {
+    Mammal dog("Собака", 5);
+    Bird parrot("Попугай", 2);
+    Fish goldfish("Золотая рыбка", 1);
+
+    dog.breathe();
+    dog.feedMilk();
+
+    parrot.breathe();
+    parrot.fly();
+
+    goldfish.breathe();
+    goldfish.swim();
+
+    return 0;
+}
+
+//-----2-----
+
+
+#include <iostream>
+#include <string>
+
+class Shape {
+protected:
+    std::string color;
+public:
+    Shape(std::string _color) : color(_color) {}
+
+    virtual void draw() = 0; 
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(std::string _color, double _radius) : Shape(_color), radius(_radius) {}
+
+    void draw() override {
+        std::cout << "Рисуем круг с радиусом " << radius << " и цветом " << color << std::endl;
+    }
+};
+
+class Square : public Shape {
+private:
+    double sideLength;
+public:
+    Square(std::string _color, double _sideLength) : Shape(_color), sideLength(_sideLength) {}
+
+    void draw() override {
+        std::cout << "Рисуем квадрат со стороной " << sideLength << " и цветом " << color << std::endl;
+    }
+};
+
+\
+
+int main() {
+    Circle circle("Красный", 5.0);
+    Square square("Синий", 4.0);
+
+    circle.draw();
+    square.draw();
+
+    return 0;
+}
