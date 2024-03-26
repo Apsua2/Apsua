@@ -1,0 +1,88 @@
+#include <iostream>
+
+class Computer {
+public:
+    void start() {
+        std::cout << "Компьютер запускается..." << std::endl;
+    }
+};
+
+class Monitor {
+public:
+    void display() {
+        std::cout << "Отображение на мониторе." << std::endl;
+    }
+};
+
+class Keyboard {
+public:
+    void type() {
+        std::cout << "Печать на клавиатуре." << std::endl;
+    }
+};
+
+class SystemUnit {
+public:
+    void powerOn() {
+        std::cout << "Включение системного блока." << std::endl;
+    }
+};
+
+class RAM {
+public:
+    void allocateMemory() {
+        std::cout << "Выделение памяти в оперативной памяти." << std::endl;
+    }
+};
+
+class Processor {
+public:
+    void process() {
+        std::cout << "Обработка данных в процессоре." << std::endl;
+    }
+};
+
+class Motherboard {
+public:
+    void connectComponents() {
+        std::cout << "Подключение компонентов на материнской плате." << std::endl;
+    }
+};
+
+class GraphicsCard {
+public:
+    void renderGraphics() {
+        std::cout << "Отображение графики с видеокарты." << std::endl;
+    }
+};
+
+class Cooler {
+public:
+    void cool() {
+        std::cout << "Охлаждение с помощью кулера." << std::endl;
+    }
+};
+
+int main() {
+    Computer myComputer;
+    Monitor myMonitor;
+    Keyboard myKeyboard;
+    SystemUnit mySystemUnit;
+    RAM myRAM;
+    Processor myProcessor;
+    Motherboard myMotherboard;
+    GraphicsCard myGraphicsCard;
+    Cooler myCooler;
+
+    myComputer.start();
+    myMonitor.display();
+    myKeyboard.type();
+    mySystemUnit.powerOn();
+    myRAM.allocateMemory();
+    myProcessor.process();
+    myMotherboard.connectComponents();
+    myGraphicsCard.renderGraphics();
+    myCooler.cool();
+
+    return 0;
+}
