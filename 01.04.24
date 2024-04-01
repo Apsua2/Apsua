@@ -1,0 +1,57 @@
+#include <iostream>
+
+class Mechanism {
+public:
+    virtual void move() = 0;
+};
+
+class Human {
+public:
+    void moveWithMechanism(Mechanism* mechanism) {
+        mechanism->move();
+    }
+};
+
+class SwimMechanism : public Mechanism {
+public:
+    void move() override {
+        std::cout << "Человек плывет\n";
+    }
+};
+
+class FlyMechanism : public Mechanism {
+public:
+    void move() override {
+        std::cout << "Человек летит\n";
+    }
+};
+
+class ClimbMechanism : public Mechanism {
+public:
+    void move() override {
+        std::cout << "Человек взбирается\n";
+    }
+};
+
+class TeleportMechanism : public Mechanism {
+public:
+    void move() override {
+        std::cout << "Человек телепортируется\n";
+    }
+};
+
+int main() {
+    Human human;
+    
+    SwimMechanism swimMechanism;
+    FlyMechanism flyMechanism;
+    ClimbMechanism climbMechanism;
+    TeleportMechanism teleportMechanism;
+    
+    human.moveWithMechanism(&swimMechanism);
+    human.moveWithMechanism(&flyMechanism);
+    human.moveWithMechanism(&climbMechanism);
+    human.moveWithMechanism(&teleportMechanism);
+    
+    return 0;
+}
