@@ -2,76 +2,67 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <cctype>
 
-// Функция для проверки, является ли строка положительным целым числом
-bool isPositiveInteger(const std::string& str) {
-    for (char c : str) {
-        if (!std::isdigit(c)) {
-            return false;
-        }
-    }
-    return true;
+bool isPositiveInteger(const std::string& s) {
+    return !s.empty() && s.find_first_not_of("0123456789") == std::string::npos;
 }
 
 int main() {
-    // Открываем файл numbers.txt для чтения
     std::ifstream inputFile("numbers.txt");
-    
-    // Проверяем, успешно ли открыт файл
     if (!inputFile.is_open()) {
-        std::cerr << "Ошибка открытия файла" << std::endl;
+        std::cerr << "Ошибка: не удалось открыть файл" << std::endl;
         return 1;
     }
-    
-    // Вектор для хранения чисел из файла
+
     std::vector<int> numbers;
     std::string line;
-    
-    // Считываем файл построчно
-    while (std::getline(inputFile, line)) {
+
+    if (std::getline(inputFile, line)) {
         std::istringstream iss(line);
         std::string numberStr;
-        
-        // Читаем каждое слово из строки
+
         while (iss >> numberStr) {
-            // Проверяем, является ли слово положительным целым числом
             if (!isPositiveInteger(numberStr)) {
                 std::cerr << "Ошибка: файл должен содержать только целые положительные числа" << std::endl;
                 return 1;
             }
-            
-            // Преобразуем строку в число и добавляем его в вектор
+
             int number = std::stoi(numberStr);
             numbers.push_back(number);
         }
-    }
-    
-    // Проверяем, что файл не пустой
-    if (numbers.empty()) {
+
+        std::string remainingLines;
+        if (std::getline(inputFile, remainingLines)) {
+            std::cerr << "Ошибка: числа должны быть расположены в одной строке" << std::endl;
+            return 1;
+        }
+    } else {
         std::cerr << "Ошибка: файл пустой" << std::endl;
         return 1;
     }
-    
-    // Находим минимальное и максимальное числа в векторе
-    int min = numbers[0];
-    int max = numbers[0];
-    
-    for (int num : numbers) {
-        if (num < min) {
-            min = num;
-        }
-        if (num > max) {
-            max = num;
-        }
-    }
-    
-    // Выводим минимальное и максимальное числа
-    std::cout << "Наименьшее число: " << min << std::endl;
-    std::cout << "Наибольшее число: " << max << std::endl;
-    
-    // Закрываем файл
+
     inputFile.close();
-    
+
+    // Находим максимальное и минимальное число
+    if (!numbers.empty()) {
+        int maxNum = numbers[0];
+        int minNum = numbers[0];
+
+        for (int num : numbers) {
+            if (num > maxNum) {
+                maxNum = num;
+            }
+            if (num < minNum) {
+                minNum = num;
+            }
+        }
+
+        std::cout << "Максимальное число: " << maxNum << std::endl;
+        std::cout << "Минимальное число: " << minNum << std::endl;
+    } else {
+        std::cerr << "Вектор чисел пустой" << std::endl;
+        return 1;
+    }
+
     return 0;
 }
