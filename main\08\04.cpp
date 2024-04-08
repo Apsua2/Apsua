@@ -8,6 +8,7 @@ bool isPositiveInteger(const std::string& s) {
 }
 
 int main() {
+    setlocale(LC_ALL, "RU");
     std::ifstream inputFile("numbers.txt");
     if (!inputFile.is_open()) {
         std::cerr << "Ошибка: не удалось открыть файл" << std::endl;
@@ -61,6 +62,13 @@ int main() {
         std::cout << "Минимальное число: " << minNum << std::endl;
     } else {
         std::cerr << "Вектор чисел пустой" << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+
+    std::cerr << "Вектор чисел пустой" << std::endl;
         return 1;
     }
 
